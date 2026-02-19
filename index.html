@@ -98,9 +98,93 @@
             font-size: 1rem;
         }
 
+        .about-text a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .about-text a:hover {
+            text-decoration: underline;
+        }
+
         .about-text p,
         .more-text p {
             margin-bottom: 1rem;
+        }
+
+        .intro-line {
+            font-size: 1.25rem;
+            color: #fafafa;
+            margin-bottom: 0.5rem;
+        }
+
+        .decision-list {
+            color: #a1a1aa;
+            font-style: italic;
+            padding-left: 1.5rem;
+            border-left: 2px solid #3f3f46;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .exploring-block,
+        .fuel-block {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            border: 1px solid #27272a;
+            border-radius: 0.5rem;
+            background: rgba(24, 24, 27, 0.3);
+        }
+
+        .exploring-block h3,
+        .fuel-block h3 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #60a5fa;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.375rem 0.75rem;
+            background: rgba(96, 165, 250, 0.1);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            color: #d4d4d8;
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background: rgba(96, 165, 250, 0.2);
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+
+        .fuel-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .fuel-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #d4d4d8;
+        }
+
+        .fuel-icon {
+            font-size: 1.25rem;
+        }
+
+        .fuel-text {
+            font-size: 0.9375rem;
         }
 
         .project-desc {
@@ -128,6 +212,51 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 1rem;
+        }
+
+        .project-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.625rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid;
+        }
+
+        .status-badge.completed {
+            color: #22c55e;
+            border-color: rgba(34, 197, 94, 0.3);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .status-badge.in-progress {
+            color: #f59e0b;
+            border-color: rgba(245, 158, 11, 0.3);
+            background: rgba(245, 158, 11, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: #f59e0b;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
         }
 
         .project-title {
@@ -214,6 +343,23 @@
             .more-text {
                 font-size: 1.125rem;
             }
+
+            .intro-line {
+                font-size: 1.5rem;
+            }
+
+            .decision-list {
+                padding-left: 2rem;
+            }
+
+            .exploring-block,
+            .fuel-block {
+                padding: 2rem;
+            }
+
+            .fuel-text {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -224,14 +370,107 @@
     <div class="container">
         <!-- Header -->
         <header>
-            <h1>
-                hey, i'm<br>
-                <span class="name">gargi gupta.</span>
-            </h1>
+            <h1>hi, i'm <span class="name">gargi.</span></h1>
             <p class="subtitle">@vjti, mumbai</p>
+        </header>
+
+        <!-- About Section -->
+        <section>
+            <div class="about-text">
+                <p class="intro-line">someone who loves understanding how intelligent systems think, learn and move.</p>
+                <p>i'm 18, and a part of the SY core @<a href="https://sravjti.in" target="_blank" rel="noopener noreferrer">SRA VJTI</a>, which allows me to work with people who think fast, argue well and deliver most ideas into execution.</p>
+                <p>I spend most of my time trying to understand -</p>
+                <p class="decision-list">
+                    how an algorithm chooses,<br>
+                    how a robot moves,<br>
+                    how a model learns from noise.
+                </p>
+            </div>
+
+            <div class="exploring-block">
+                <h3>currently exploring</h3>
+                <div class="tag-list">
+                    <span class="tag">reinforcement learning</span>
+                    <span class="tag">machine learning</span>
+                    <span class="tag">computer vision</span>
+                    <span class="tag">competitive programming</span>
+                    <span class="tag">finance</span>
+                </div>
+            </div>
+
+            <div class="fuel-block">
+                <h3>things that fuel me</h3>
+                <div class="fuel-list">
+                    <div class="fuel-item">
+                        <span class="fuel-icon">📚</span>
+                        <span class="fuel-text">books that stretch my imagination</span>
+                    </div>
+                    <div class="fuel-item">
+                        <span class="fuel-icon">🎵</span>
+                        <span class="fuel-text">music that touches me deeply</span>
+                    </div>
+                    <div class="fuel-item">
+                        <span class="fuel-icon">🎨</span>
+                        <span class="fuel-text">art that grounds me</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section>
+            <h2>projects.</h2>
+            <p class="project-desc">a glimpse into my exploratory ventures.</p>
+
+            <a href="https://github.com/Advait2211/quad_move_eklavya" target="_blank" rel="noopener noreferrer" class="project-card-link">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title-wrapper">
+                            <h3 class="project-title">QuadMove</h3>
+                            <span class="status-badge completed">completed</span>
+                        </div>
+                        <span class="project-link" aria-label="View on GitHub">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </div>
+                    <p class="project-description">autonomous quadruped locomotion system with reinforcement learning
+                        integration</p>
+                </div>
+            </a>
+
+            <a href="https://github.com/gg21-prog/ampmove" target="_blank" rel="noopener noreferrer" class="project-card-link" style="margin-top: 1.5rem;">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title-wrapper">
+                            <h3 class="project-title">ampmove</h3>
+                            <span class="status-badge in-progress">
+                                <span class="pulse-dot"></span>
+                                in progress
+                            </span>
+                        </div>
+                        <span class="project-link" aria-label="View on GitHub">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </div>
+                    <p class="project-description">adaptive motion primitives for humanoid locomotion</p>
+                </div>
+            </a>
+        </section>
+
+        <!-- Contact Section -->
+        <section>
+            <h2>find me at.</h2>
 
             <!-- Social Links -->
-            <div class="social-links">
+            <div class="social-links" style="margin-top: 1.5rem;">
                 <a href="https://github.com/gg21-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                     <svg fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd"
@@ -246,73 +485,13 @@
                             d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                     </svg>
                 </a>
-                <a href="mailto:gargi@example.com" aria-label="Email">
+                <a href="mailto:guptagargi2007@gmail.com" aria-label="Email">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                 </a>
             </div>
-        </header>
-
-        <!-- About Section -->
-        <section>
-            <div class="about-text">
-                <p>someone who loves understanding how intelligent systems think, learn, and move.</p>
-                <p>i'm happiest when i'm building something new, tweaking a system until it behaves, or breaking it just
-                    to see what happens next. curiosity is kind of my default setting.</p>
-                <p>i'm 18, exploring where robotics, reinforcement learning, control systems, and competitive
-                    programming all overlap. i love the mix — the problem-solving rush of CP, the structured chaos of
-                    robotics, and the quiet satisfaction of getting a system to finally do what you imagined. lately,
-                    i've also been diving deeper and slowly getting into research papers, trying to understand the ideas
-                    behind the ideas.</p>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section>
-            <h2>projects.</h2>
-            <p class="project-desc">a glimpse into the systems i've built, the problems i've solved, and the ideas i've
-                pursued along the way.</p>
-
-            <a href="https://github.com/Advait2211/quad_move_eklavya" target="_blank" rel="noopener noreferrer" class="project-card-link">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">QuadMove</h3>
-                        <span class="project-link" aria-label="View on GitHub">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </span>
-                    </div>
-                    <p class="project-description">autonomous quadruped locomotion system with reinforcement learning
-                        integration</p>
-                </div>
-            </a>
-        </section>
-
-        <!-- More Section -->
-        <section>
-            <h2>more.</h2>
-            <div class="more-text">
-                <p>i'm part of <a href="https://sravjti.in" target="_blank" rel="noopener noreferrer">SRA VJTI</a>,
-                    where i collaborate with people who enjoy building and experimenting as much as i do. it's taught me
-                    a lot about systems, teamwork, and how unpredictable and rewarding robotics can be.</p>
-                <p>outside the technical world, i'm big on art, aesthetics, music, and long conversations. i read a lot
-                    — mostly fiction — and i love trying to analyse why certain stories or characters stick with you
-                    long after you're done. making sense of things, whether it's code or life or a book i can't stop
-                    thinking about, feels like the same kind of puzzle to me.</p>
-                <p class="closing">always curious. always experimenting. always growing into the next version of myself.
-                </p>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section>
-            <h2>let's talk.</h2>
-            <a href="mailto:gargi@example.com" class="contact-btn">get in touch →</a>
         </section>
 
         <!-- Footer -->
