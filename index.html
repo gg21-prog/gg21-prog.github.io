@@ -32,15 +32,56 @@
         }
 
         .container {
-            max-width: 48rem;
+            max-width: 90rem;
+            width: 92%;
             margin: 0 auto;
-            padding: 4rem 1.5rem;
+            padding: 4rem 0;
             position: relative;
             z-index: 1;
         }
 
         header {
             margin-bottom: 6rem;
+        }
+
+        .header-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .header-webring {
+            position: fixed;
+            right: 1.5rem;
+            top: 1.5rem;
+            z-index: 10;
+        }
+
+        .header-webring img {
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            display: block;
+            filter: brightness(0) invert(1);
+            width: clamp(2.25rem, 8vw, 3.75rem);
+            height: clamp(2.25rem, 8vw, 3.75rem);
+        }
+
+        .header-webring img:hover {
+            opacity: 1;
+        }
+
+        .header-photo img {
+            width: 200px;
+            height: 255px;
+            border-radius: 0.375rem;
+            object-fit: cover;
+            border: 2px solid #27272a;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
 
         h1 {
@@ -265,34 +306,28 @@
             color: #60a5fa;
         }
 
-        .project-link {
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .link-pill {
+            padding: 0.2rem 0.5rem;
+            border: 1px solid #3f3f46;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
             color: #71717a;
-            transition: color 0.3s;
+            text-decoration: none;
+            transition: all 0.3s;
         }
 
-        .project-link:hover {
+        .link-pill:hover {
             color: #d4d4d8;
+            border-color: #52525b;
         }
 
-        .project-link svg {
-            width: 1.25rem;
-            height: 1.25rem;
-        }
-
-        .project-card-link {
-            text-decoration: none;
-            display: block;
-        }
-
-        .project-card-link:hover {
-            text-decoration: none;
-        }
-
-        .project-card-link .project-card:hover {
-            border-color: #3f3f46;
-            background: rgba(24, 24, 27, 0.7);
-            cursor: pointer;
-        }
 
         .project-description {
             color: #a1a1aa;
@@ -328,17 +363,20 @@
             color: #60a5fa;
         }
 
-        footer {
-            color: #52525b;
-            font-size: 0.875rem;
-            margin-top: 4rem;
+
+        @media (min-width: 640px) {
+            .header-layout {
+                flex-direction: row;
+                align-items: center;
+            }
+
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (min-width: 768px) {
-            .container {
-                padding: 4rem 1.5rem;
-            }
-
             .about-text,
             .more-text {
                 font-size: 1.125rem;
@@ -361,6 +399,13 @@
                 font-size: 1rem;
             }
         }
+
+        @media (min-width: 1100px) {
+
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
     </style>
 </head>
 
@@ -370,8 +415,41 @@
     <div class="container">
         <!-- Header -->
         <header>
-            <h1>hi, i'm <span class="name">gargi.</span></h1>
-            <p class="subtitle">@vjti, mumbai</p>
+            <div class="header-layout">
+                <div class="header-photo">
+                    <img src="me.jpeg" alt="Gargi Gupta">
+                </div>
+                <div class="header-content">
+                    <h1>hi, i'm <span class="name">gargi.</span></h1>
+                    <p class="subtitle">@vjti, mumbai</p>
+                    <div class="social-links">
+                        <a href="https://github.com/gg21-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/gargi-gupta-821349330/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                        <a href="mailto:guptagargi2007@gmail.com" aria-label="Email">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="header-webring">
+                <a href="https://sravjti.in/webring/" title="SRA Webring">
+                    <img src="https://sravjti.in/webring/khopdi.svg" alt="SRA Webring" style="width:48px;height:48px;">
+                </a>
+            </div>
         </header>
 
         <!-- About Section -->
@@ -400,19 +478,10 @@
 
             <div class="fuel-block">
                 <h3>things that fuel me</h3>
-                <div class="fuel-list">
-                    <div class="fuel-item">
-                        <span class="fuel-icon">📚</span>
-                        <span class="fuel-text">books that stretch my imagination</span>
-                    </div>
-                    <div class="fuel-item">
-                        <span class="fuel-icon">🎵</span>
-                        <span class="fuel-text">music that touches me deeply</span>
-                    </div>
-                    <div class="fuel-item">
-                        <span class="fuel-icon">🎨</span>
-                        <span class="fuel-text">art that grounds me</span>
-                    </div>
+                <div class="tag-list">
+                    <span class="tag">📚 books</span>
+                    <span class="tag">🎵 music</span>
+                    <span class="tag">🎨 art</span>
                 </div>
             </div>
         </section>
@@ -422,82 +491,88 @@
             <h2>projects.</h2>
             <p class="project-desc">a glimpse into my exploratory ventures.</p>
 
-            <a href="https://github.com/Advait2211/quad_move_eklavya" target="_blank" rel="noopener noreferrer" class="project-card-link">
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-title-wrapper">
-                            <h3 class="project-title">QuadMove</h3>
-                            <span class="status-badge completed">completed</span>
-                        </div>
-                        <span class="project-link" aria-label="View on GitHub">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                    clip-rule="evenodd" />
-                            </svg>
+            <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title-wrapper">
+                        <h3 class="project-title">QuadMove</h3>
+                        <span class="status-badge completed">completed</span>
+                    </div>
+                </div>
+                <p class="project-description">RL curriculum ending in PPO on a Unitree Go2 in MuJoCo. spent most of the time on reward design. a policy can pass every metric and still look completely wrong.</p>
+                <div class="project-links">
+                    <a href="https://github.com/Advait2211/quad_move_eklavya" target="_blank" rel="noopener noreferrer" class="link-pill">github</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title-wrapper">
+                        <h3 class="project-title">AmpMove</h3>
+                        <span class="status-badge in-progress">
+                            <span class="pulse-dot"></span>
+                            in progress
                         </span>
                     </div>
-                    <p class="project-description">autonomous quadruped locomotion system with reinforcement learning
-                        integration</p>
                 </div>
-            </a>
+                <p class="project-description">AMP on iRonCub in Isaac Lab. instead of a hand-crafted reward, a discriminator scores how closely the policy's motion matches CMU mocap clips and that score becomes the reward signal.</p>
+                <div class="project-links">
+                    <a href="https://github.com/gg21-prog/ampmove" target="_blank" rel="noopener noreferrer" class="link-pill">github</a>
+                    <a href="https://arxiv.org/pdf/2309.12784v2" target="_blank" rel="noopener noreferrer" class="link-pill">paper</a>
+                </div>
+            </div>
 
-            <a href="https://github.com/gg21-prog/ampmove" target="_blank" rel="noopener noreferrer" class="project-card-link" style="margin-top: 1.5rem;">
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-title-wrapper">
-                            <h3 class="project-title">ampmove</h3>
-                            <span class="status-badge in-progress">
-                                <span class="pulse-dot"></span>
-                                in progress
-                            </span>
-                        </div>
-                        <span class="project-link" aria-label="View on GitHub">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                    clip-rule="evenodd" />
-                            </svg>
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title-wrapper">
+                        <h3 class="project-title">TinyDiff</h3>
+                        <span class="status-badge in-progress">
+                            <span class="pulse-dot"></span>
+                            in progress
                         </span>
                     </div>
-                    <p class="project-description">adaptive motion primitives for humanoid locomotion</p>
                 </div>
-            </a>
-        </section>
+                <p class="project-description">scalar autograd engine from scratch. builds the graph forward, walks it back. extending to tensors.</p>
+                <div class="project-links">
+                    <a href="https://github.com/gg21-prog/tinydiff" target="_blank" rel="noopener noreferrer" class="link-pill">github</a>
+                    <a href="https://www.youtube.com/watch?v=VMj-3S1tku0" target="_blank" rel="noopener noreferrer" class="link-pill">micrograd lecture</a>
+                </div>
+            </div>
 
-        <!-- Contact Section -->
-        <section>
-            <h2>find me at.</h2>
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title-wrapper">
+                        <h3 class="project-title">ViTs on CMS Detector Data</h3>
+                        <span class="status-badge completed">completed</span>
+                    </div>
+                </div>
+                <p class="project-description">benchmarked L²ViT and PolaFormer on CMS detector images. L²ViT matches softmax at O(n). PolaFormer's edge only shows after pretraining, ReLU kernel is the bottleneck on sparse regression.</p>
+                <div class="project-links">
+                    <a href="https://github.com/gg21-prog/frontier_vit" target="_blank" rel="noopener noreferrer" class="link-pill">github</a>
+                    <a href="https://arxiv.org/abs/2501.16182" target="_blank" rel="noopener noreferrer" class="link-pill">L²ViT paper</a>
+                    <a href="https://arxiv.org/abs/2107.00782" target="_blank" rel="noopener noreferrer" class="link-pill">PolaFormer paper</a>
+                </div>
+            </div>
 
-            <!-- Social Links -->
-            <div class="social-links" style="margin-top: 1.5rem;">
-                <a href="https://github.com/gg21-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <svg fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd"
-                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/gargi-gupta-821349330/" target="_blank" rel="noopener noreferrer"
-                    aria-label="LinkedIn">
-                    <svg fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                </a>
-                <a href="mailto:guptagargi2007@gmail.com" aria-label="Email">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                </a>
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title-wrapper">
+                        <h3 class="project-title">implement_Eureka</h3>
+                        <span class="status-badge in-progress">
+                            <span class="pulse-dot"></span>
+                            in progress
+                        </span>
+                    </div>
+                </div>
+                <p class="project-description">Eureka generates reward functions from env code using GPT-4. we add visual goal specification via CLIP and swap GPT-4 for a local LLM, so you can show the agent what to do rather than only describing it in code.</p>
+                <div class="project-links">
+                    <a href="https://github.com/gg21-prog/implement_Eureka" target="_blank" rel="noopener noreferrer" class="link-pill">github</a>
+                    <a href="https://eureka-research.github.io/" target="_blank" rel="noopener noreferrer" class="link-pill">paper</a>
+                </div>
+            </div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer>
-            <p>crafted with care · 2025</p>
-        </footer>
     </div>
 
     <script>
