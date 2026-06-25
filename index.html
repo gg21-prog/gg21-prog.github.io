@@ -1,694 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gargi Gupta - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Courier New', monospace;
-            background-color: #09090b;
-            color: #fafafa;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        #canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
-            max-width: 90rem;
-            width: 92%;
-            margin: 0 auto;
-            padding: 4rem 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        header {
-            margin-bottom: 6rem;
-        }
-
-        .header-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .header-webring {
-            position: fixed;
-            right: 1.5rem;
-            top: 1.5rem;
-            z-index: 10;
-        }
-
-        .header-webring img {
-            opacity: 0.7;
-            transition: opacity 0.3s;
-            display: block;
-            filter: brightness(0) invert(1);
-            width: clamp(2.25rem, 8vw, 3.75rem);
-            height: clamp(2.25rem, 8vw, 3.75rem);
-        }
-
-        .header-webring img:hover {
-            opacity: 1;
-        }
-
-        .header-photo img {
-            width: 200px;
-            height: 255px;
-            border-radius: 0.375rem;
-            object-fit: cover;
-            border: 2px solid #27272a;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        h1 {
-            font-size: clamp(2.25rem, 8vw, 3.75rem);
-            font-weight: 300;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-        }
-
-        h1 .name {
-            color: #60a5fa;
-        }
-
-        .subtitle {
-            color: #a1a1aa;
-            font-size: 1.125rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            color: #71717a;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #d4d4d8;
-        }
-
-        .social-links svg {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-
-        section {
-            margin-bottom: 6rem;
-        }
-
-        h2 {
-            font-size: 1.875rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            color: #fafafa;
-        }
-
-        .about-text,
-        .more-text {
-            color: #d4d4d8;
-            line-height: 1.75;
-            font-size: 1rem;
-        }
-
-        .about-text a {
-            color: #60a5fa;
-            text-decoration: none;
-        }
-
-        .about-text a:hover {
-            text-decoration: underline;
-        }
-
-        .about-text p,
-        .more-text p {
-            margin-bottom: 1rem;
-        }
-
-        .intro-line {
-            font-size: 1.25rem;
-            color: #fafafa;
-            margin-bottom: 0.5rem;
-        }
-
-        .decision-list {
-            color: #a1a1aa;
-            font-style: italic;
-            padding-left: 1.5rem;
-            border-left: 2px solid #3f3f46;
-            margin: 1rem 0 1.5rem 0;
-        }
-
-        .exploring-block,
-        .fuel-block {
-            margin-top: 3rem;
-            padding: 1.5rem;
-            border: 1px solid #27272a;
-            border-radius: 0.5rem;
-            background: rgba(24, 24, 27, 0.3);
-        }
-
-        .exploring-block h3,
-        .fuel-block h3 {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #60a5fa;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .tag-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            padding: 0.375rem 0.75rem;
-            background: rgba(96, 165, 250, 0.1);
-            border: 1px solid rgba(96, 165, 250, 0.3);
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            color: #d4d4d8;
-            transition: all 0.3s;
-        }
-
-        .tag:hover {
-            background: rgba(96, 165, 250, 0.2);
-            border-color: rgba(96, 165, 250, 0.5);
-        }
-
-        .fuel-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .fuel-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: #d4d4d8;
-        }
-
-        .fuel-icon {
-            font-size: 1.25rem;
-        }
-
-        .fuel-text {
-            font-size: 0.9375rem;
-        }
-
-        .project-desc {
-            color: #a1a1aa;
-            margin-bottom: 3rem;
-            line-height: 1.75;
-        }
-
-        .project-card {
-            border: 1px solid #27272a;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            background: rgba(24, 24, 27, 0.5);
-            backdrop-filter: blur(12px);
-            transition: all 0.3s;
-        }
-
-        .project-card:hover {
-            border-color: #3f3f46;
-            background: rgba(24, 24, 27, 0.7);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .project-title-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .status-badge {
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.625rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            border: 1px solid;
-        }
-
-        .status-badge.completed {
-            color: #22c55e;
-            border-color: rgba(34, 197, 94, 0.3);
-            background: rgba(34, 197, 94, 0.1);
-        }
-
-        .status-badge.in-progress {
-            color: #f59e0b;
-            border-color: rgba(245, 158, 11, 0.3);
-            background: rgba(245, 158, 11, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.375rem;
-        }
-
-        .pulse-dot {
-            width: 6px;
-            height: 6px;
-            background: #f59e0b;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-
-        .project-title {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: #60a5fa;
-        }
-
-        .project-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .link-pill {
-            padding: 0.2rem 0.5rem;
-            border: 1px solid #3f3f46;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            color: #71717a;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .link-pill:hover {
-            color: #d4d4d8;
-            border-color: #52525b;
-        }
-
-
-        .project-description {
-            color: #a1a1aa;
-            line-height: 1.75;
-        }
-
-        .more-text a {
-            color: #60a5fa;
-            text-decoration: none;
-        }
-
-        .more-text a:hover {
-            text-decoration: underline;
-        }
-
-        .more-text .closing {
-            color: #a1a1aa;
-            font-style: italic;
-        }
-
-        .contact-btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid #3f3f46;
-            border-radius: 0.5rem;
-            color: #fafafa;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .contact-btn:hover {
-            border-color: #60a5fa;
-            color: #60a5fa;
-        }
-
-
-        @media (min-width: 640px) {
-            .header-layout {
-                flex-direction: row;
-                align-items: center;
-            }
-
-
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 768px) {
-            .about-text,
-            .more-text {
-                font-size: 1.125rem;
-            }
-
-            .intro-line {
-                font-size: 1.5rem;
-            }
-
-            .decision-list {
-                padding-left: 2rem;
-            }
-
-            .exploring-block,
-            .fuel-block {
-                padding: 2rem;
-            }
-
-            .fuel-text {
-                font-size: 1rem;
-            }
-        }
-
-        @media (min-width: 1100px) {
-
-            .projects-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-    </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>gargi gupta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Pinyon+Script&family=Space+Grotesk:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <canvas id="canvas"></canvas>
-
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="header-layout">
-                <div class="header-photo">
-                    <img src="me.jpeg" alt="Gargi Gupta">
-                </div>
-                <div class="header-content">
-                    <h1>hi, i'm <span class="name">gargi.</span></h1>
-                    <p class="subtitle">@vjti, mumbai</p>
-                    <div class="social-links">
-                        <a href="https://github.com/gg21-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/gargi-gupta-821349330/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                            </svg>
-                        </a>
-                        <a href="mailto:guptagargi2007@gmail.com" aria-label="Email">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="header-webring">
-                <a href="https://sravjti.in/webring/" title="SRA Webring">
-                    <img src="https://sravjti.in/webring/khopdi.svg" alt="SRA Webring" style="width:48px;height:48px;">
-                </a>
-            </div>
-        </header>
-
-        <!-- About Section -->
-        <section>
-            <div class="about-text">
-                <p class="intro-line">someone who loves understanding how intelligent systems think, learn and move.</p>
-                <p>i'm 18, and a part of the SY core @<a href="https://sravjti.in" target="_blank" rel="noopener noreferrer">SRA VJTI</a>, which allows me to work with people who think fast, argue well and deliver most ideas into execution.</p>
-                <p>I spend most of my time trying to understand -</p>
-                <p class="decision-list">
-                    how an algorithm chooses,<br>
-                    how a robot moves,<br>
-                    how a model learns from noise.
-                </p>
-            </div>
-
-            <div class="exploring-block">
-                <h3>currently exploring</h3>
-                <div class="tag-list">
-                    <span class="tag">reinforcement learning</span>
-                    <span class="tag">machine learning</span>
-                    <span class="tag">computer vision</span>
-                    <span class="tag">competitive programming</span>
-                    <span class="tag">finance</span>
-                </div>
-            </div>
-
-            <div class="fuel-block">
-                <h3>things that fuel me</h3>
-                <div class="tag-list">
-                    <span class="tag">📚 books</span>
-                    <span class="tag">🎵 music</span>
-                    <span class="tag">🎨 art</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section>
-            <h2>projects.</h2>
-            <p class="project-desc">a glimpse into my exploratory ventures.</p>
-
-            <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-wrapper">
-                        <h3 class="project-title">QuadMove</h3>
-                        <span class="status-badge completed">completed</span>
-                    </div>
-                </div>
-                <p class="project-description">RL curriculum ending in PPO on a Unitree Go2 in MuJoCo. spent most of the time on reward design. a policy can pass every metric and still look completely wrong.</p>
-                <div class="project-links">
-                    <a href="https://github.com/Advait2211/quad_move_eklavya" target="_blank" rel="noopener noreferrer" class="link-pill">github</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-wrapper">
-                        <h3 class="project-title">AmpMove</h3>
-                        <span class="status-badge in-progress">
-                            <span class="pulse-dot"></span>
-                            in progress
-                        </span>
-                    </div>
-                </div>
-                <p class="project-description">AMP on iRonCub in Isaac Lab. instead of a hand-crafted reward, a discriminator scores how closely the policy's motion matches CMU mocap clips and that score becomes the reward signal.</p>
-                <div class="project-links">
-                    <a href="https://github.com/gg21-prog/ampmove" target="_blank" rel="noopener noreferrer" class="link-pill">github</a>
-                    <a href="https://arxiv.org/pdf/2309.12784v2" target="_blank" rel="noopener noreferrer" class="link-pill">paper</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-wrapper">
-                        <h3 class="project-title">TinyDiff</h3>
-                        <span class="status-badge in-progress">
-                            <span class="pulse-dot"></span>
-                            in progress
-                        </span>
-                    </div>
-                </div>
-                <p class="project-description">scalar autograd engine from scratch. builds the graph forward, walks it back. extending to tensors.</p>
-                <div class="project-links">
-                    <a href="https://github.com/gg21-prog/tinydiff" target="_blank" rel="noopener noreferrer" class="link-pill">github</a>
-                    <a href="https://www.youtube.com/watch?v=VMj-3S1tku0" target="_blank" rel="noopener noreferrer" class="link-pill">micrograd lecture</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-wrapper">
-                        <h3 class="project-title">ViTs on CMS Detector Data</h3>
-                        <span class="status-badge completed">completed</span>
-                    </div>
-                </div>
-                <p class="project-description">benchmarked L²ViT and PolaFormer on CMS detector images. L²ViT matches softmax at O(n). PolaFormer's edge only shows after pretraining, ReLU kernel is the bottleneck on sparse regression.</p>
-                <div class="project-links">
-                    <a href="https://github.com/gg21-prog/frontier_vit" target="_blank" rel="noopener noreferrer" class="link-pill">github</a>
-                    <a href="https://arxiv.org/abs/2501.16182" target="_blank" rel="noopener noreferrer" class="link-pill">L²ViT paper</a>
-                    <a href="https://arxiv.org/abs/2107.00782" target="_blank" rel="noopener noreferrer" class="link-pill">PolaFormer paper</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-wrapper">
-                        <h3 class="project-title">implement_Eureka</h3>
-                        <span class="status-badge in-progress">
-                            <span class="pulse-dot"></span>
-                            in progress
-                        </span>
-                    </div>
-                </div>
-                <p class="project-description">Eureka generates reward functions from env code using GPT-4. we add visual goal specification via CLIP and swap GPT-4 for a local LLM, so you can show the agent what to do rather than only describing it in code.</p>
-                <div class="project-links">
-                    <a href="https://github.com/gg21-prog/implement_Eureka" target="_blank" rel="noopener noreferrer" class="link-pill">github</a>
-                    <a href="https://eureka-research.github.io/" target="_blank" rel="noopener noreferrer" class="link-pill">paper</a>
-                </div>
-            </div>
-            </div>
-        </section>
-
+<div class="bg"></div>
+<div class="wash"></div>
+<div class="sheet" id="sheet">
+<main class="panel">
+  <nav class="nav">
+    <a class="brand" data-route="home" title="home"><img src="assets/brand.png" alt="home"/></a>
+    <div class="navlinks">
+      <a data-route="projects">projects</a>
+      <a data-route="experience">experience</a>
     </div>
+  </nav>
+  <h2 class="vhead" id="viewTitle" hidden></h2>
+  <div id="scroll">
 
-    <script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        let time = 0;
-        const gridSize = 40;
+  <section class="view" id="home">
+    <div class="home">
+      <div class="photo-col">
+        <div class="photo"><img src="me.jpeg" alt="gargi gupta"/></div>
+        <div class="branch" id="branch"><img src="assets/branch.png" alt="vine" style="width:100%;display:block"/></div>
+        <p class="perch-hint" id="perchHint">&#x2191; click</p>
+      </div>
+      <div>
+        <h1 class="name"><span class="l1">gargi</span><span class="l2">gupta</span></h1>
+        <p class="affil">@spons head, SRA VJTI <span class="sep">·</span> @academic general secretary, VJTI</p>
+        <div class="intro">
+          <span>19, majoring in electronics with a minor in AI/ML.</span>
+          <span>spend my time delving into reinforcement learning and deep learning: locomotion policies, language models, the periodic detour into finance.</span>
+          <span><span class="reveal">SRA is my exploratory hub<img class="reveal-pic" src="assets/sra.jpg" alt="SRA"/></span>; the people who inspire my drive to keep going.</span>
+          <span>when i'm not buried in one of these rabbit holes, i'm probably reading.</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/gg21-prog" target="_blank">github</a>
+          <a href="https://www.linkedin.com/in/gargi-gupta-821349330/" target="_blank">linkedin</a>
+          <a href="mailto:guptagargi2007@gmail.com">email</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = document.documentElement.scrollHeight;
-        }
+  <section class="view" id="projects" hidden>
+    <div class="timeline" id="timeline">
+      <div class="spine"></div>
+      <div class="spine-icon" id="spineIcon"><svg viewBox="0 0 140 140">
+  <defs><linearGradient id="ow2" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ffb02e"/><stop offset=".55" stop-color="#f5821f"/><stop offset="1" stop-color="#e0620f"/></linearGradient></defs>
+  <g class="wR"><path d="M70 52 C82 33 105 25 121 30 C133 34 133 51 120 61 C104 71 84 66 70 60 Z" fill="url(#ow2)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M70 62 C85 64 105 70 111 86 C116 101 104 117 88 110 C75 104 70 80 70 70 Z" fill="url(#ow2)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M71 56 L118 35 M71 57 L123 47" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="117" cy="34" r="2.3" fill="#fff"/><circle cx="106" cy="92" r="2.1" fill="#fff"/></g>
+  <g class="wL"><path d="M70 52 C58 33 35 25 19 30 C7 34 7 51 20 61 C36 71 56 66 70 60 Z" fill="url(#ow2)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M70 62 C55 64 35 70 29 86 C24 101 36 117 52 110 C65 104 70 80 70 70 Z" fill="url(#ow2)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M69 56 L22 35 M69 57 L17 47" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="23" cy="34" r="2.3" fill="#fff"/><circle cx="34" cy="92" r="2.1" fill="#fff"/></g>
+  <path d="M70 50 C66 38 60 31 55 27" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M70 50 C74 38 80 31 85 27" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="54.5" cy="26" r="2.4" fill="#1c130e"/><circle cx="85.5" cy="26" r="2.4" fill="#1c130e"/>
+  <ellipse cx="70" cy="74" rx="3" ry="22" fill="#1c130e"/><circle cx="70" cy="50" r="4" fill="#1c130e"/>
+</svg></div>
+      <div class="stop" data-idx="0">
+        <div class="card-l"><h3>quadmove</h3><span class="status done">completed</span>
+          <p>an rl curriculum that worked its way up to ppo on a unitree go2 in mujoco, with a chance to pit my own ppo against stable-baselines3. most of the work, though, was reward design: a policy can pass every metric and still look completely wrong.</p>
+          <div class="links"><a href="https://github.com/Advait2211/quad_move_eklavya" target="_blank">github ↗</a></div></div>
+        <div class="stop-node"><div class="stop-dot"></div></div><div class="card-r"></div></div>
+      <div class="stop" data-idx="1">
+        <div class="card-l"></div><div class="stop-node"><div class="stop-dot"></div></div>
+        <div class="card-r"><h3>vits on cms detector data</h3><span class="status done">completed</span>
+          <p>implemented l²vit and polaformer from scratch and pit them on cms detector images, doing joint jet classification and mass regression off a masked-autoencoder pretrain. linear attention keeps pace with softmax at o(n), and there's a clean tradeoff: l²vit takes classification, polaformer takes regression.</p>
+          <div class="links"><a href="https://github.com/gg21-prog/frontier_vit" target="_blank">github ↗</a><a href="https://arxiv.org/abs/2501.16182" target="_blank">l²vit ↗</a></div></div></div>
+      <div class="stop" data-idx="2">
+        <div class="card-l"><h3>ampmove</h3><span class="status">in progress</span>
+          <p>a ppo baseline on ironcub locomotion in mujoco, now benchmarking against amp in isaac lab. amp's discriminator scores how closely the policy matches mocap and that becomes the reward, so the question is whether a learned reward beats a hand-crafted gait.</p>
+          <div class="links"><a href="https://github.com/gg21-prog/ampmove" target="_blank">github ↗</a><a href="https://arxiv.org/pdf/2309.12784v2" target="_blank">paper ↗</a></div></div>
+        <div class="stop-node"><div class="stop-dot"></div></div><div class="card-r"></div></div>
+      <div class="stop" data-idx="3">
+        <div class="card-l"></div><div class="stop-node"><div class="stop-dot"></div></div>
+        <div class="card-r"><h3>archimedes</h3><span class="status">in progress</span>
+          <p>an llm proposes reward functions, ppo trains them in mujoco, and a vlm critiques the rendered rollouts to steer the next generation. it grew out of the eureka paper, but the vlm means showing the agent what good looks like instead of just describing it.</p>
+          <div class="links"><a href="https://github.com/advait2211/archimedes" target="_blank">github ↗</a><a href="https://eureka-research.github.io/" target="_blank">paper ↗</a></div></div></div>
+      <div class="stop" data-idx="4">
+        <div class="card-l"><h3>tinydiff</h3><span class="status">in progress</span>
+          <p>a reverse-mode autograd engine from scratch: it builds the computation graph on the forward pass and walks it backward for gradients, checked against pytorch autograd. scalar for now, extending toward tensors.</p>
+          <div class="links"><a href="https://github.com/gg21-prog/tinydiff" target="_blank">github ↗</a></div></div>
+        <div class="stop-node"><div class="stop-dot"></div></div><div class="card-r"></div></div>
+    </div>
+  </section>
 
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('scroll', resizeCanvas);
+  <section class="view" id="experience" hidden>
+    <div class="timeline" id="timelineExp">
+      <div class="spine"></div>
+      <div class="spine-icon" id="spineIconExp"><svg viewBox="0 0 140 140">
+  <defs><linearGradient id="ow3" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ffb02e"/><stop offset=".55" stop-color="#f5821f"/><stop offset="1" stop-color="#e0620f"/></linearGradient></defs>
+  <g class="wR"><path d="M70 52 C82 33 105 25 121 30 C133 34 133 51 120 61 C104 71 84 66 70 60 Z" fill="url(#ow3)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M70 62 C85 64 105 70 111 86 C116 101 104 117 88 110 C75 104 70 80 70 70 Z" fill="url(#ow3)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M71 56 L118 35 M71 57 L123 47" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="117" cy="34" r="2.3" fill="#fff"/><circle cx="106" cy="92" r="2.1" fill="#fff"/></g>
+  <g class="wL"><path d="M70 52 C58 33 35 25 19 30 C7 34 7 51 20 61 C36 71 56 66 70 60 Z" fill="url(#ow3)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M70 62 C55 64 35 70 29 86 C24 101 36 117 52 110 C65 104 70 80 70 70 Z" fill="url(#ow3)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M69 56 L22 35 M69 57 L17 47" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="23" cy="34" r="2.3" fill="#fff"/><circle cx="34" cy="92" r="2.1" fill="#fff"/></g>
+  <path d="M70 50 C66 38 60 31 55 27" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M70 50 C74 38 80 31 85 27" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="54.5" cy="26" r="2.4" fill="#1c130e"/><circle cx="85.5" cy="26" r="2.4" fill="#1c130e"/>
+  <ellipse cx="70" cy="74" rx="3" ry="22" fill="#1c130e"/><circle cx="70" cy="50" r="4" fill="#1c130e"/>
+</svg></div>
+      <div class="stop" data-idx="0">
+        <div class="card-l"><h3>hdfc bank</h3><span class="status done">ai/ml intern · jun – jul 2025</span>
+          <p>built pipelines that pull structured data out of messy banking paperwork using ocr, opencv, and gemini flash, then benchmarked extraction tools to see what actually held up.</p></div>
+        <div class="stop-node"><div class="stop-dot"></div></div><div class="card-r"></div></div>
+      <div class="stop" data-idx="1">
+        <div class="card-l"></div><div class="stop-node"><div class="stop-dot"></div></div>
+        <div class="card-r"><h3>lexlegis.ai</h3><span class="status done">technical intern · jan 2026</span>
+          <p>analysed the production rag pipelines on aws and elasticsearch, and built a newsletter prototype with ollama and qwen.</p></div></div>
+      <div class="stop" data-idx="2">
+        <div class="card-l"><h3>espressif systems</h3><span class="status">summer intern · may 2026 – present</span>
+          <p>training language models to act as conversational agents: they reason step by step through a dialogue to figure out what a user actually wants, then turn it into a valid, deployable product config. fine-tuned with grpo and sft so it generalises within the domain instead of memorising it.</p></div>
+        <div class="stop-node"><div class="stop-dot"></div></div><div class="card-r"></div></div>
+    </div>
+  </section>
 
-        function drawGrid() {
-            const scrollY = window.scrollY;
-            const width = canvas.width;
-            const height = canvas.height;
+  </div>
+</main>
+</div>
 
-            // Clear canvas
-            ctx.fillStyle = '#09090b';
-            ctx.fillRect(0, 0, width, height);
+<div id="fx" aria-hidden="true">
+  <canvas id="trail"></canvas>
+  <div id="lens"></div>
+  <div id="butterfly"><div id="bfsway"><svg viewBox="0 0 140 140">
+  <defs><linearGradient id="ow" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ffb02e"/><stop offset=".55" stop-color="#f5821f"/><stop offset="1" stop-color="#e0620f"/></linearGradient></defs>
+  <g class="wR"><path d="M70 52 C82 33 105 25 121 30 C133 34 133 51 120 61 C104 71 84 66 70 60 Z" fill="url(#ow)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M70 62 C85 64 105 70 111 86 C116 101 104 117 88 110 C75 104 70 80 70 70 Z" fill="url(#ow)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M71 56 L118 35 M71 57 L123 47 M71 58 L110 58" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M72 67 L106 82 M72 69 L101 99 M72 70 L88 106" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="117" cy="34" r="2.3" fill="#fff"/><circle cx="124" cy="44" r="2.1" fill="#fff"/>
+  <circle cx="106" cy="92" r="2.1" fill="#fff"/><circle cx="97" cy="106" r="2" fill="#fff"/></g>
+  <g class="wL"><path d="M70 52 C58 33 35 25 19 30 C7 34 7 51 20 61 C36 71 56 66 70 60 Z" fill="url(#ow)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M70 62 C55 64 35 70 29 86 C24 101 36 117 52 110 C65 104 70 80 70 70 Z" fill="url(#ow)" stroke="#1c130e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M69 56 L22 35 M69 57 L17 47 M69 58 L30 58" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M68 67 L34 82 M68 69 L39 99 M68 70 L52 106" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="23" cy="34" r="2.3" fill="#fff"/><circle cx="16" cy="44" r="2.1" fill="#fff"/>
+  <circle cx="34" cy="92" r="2.1" fill="#fff"/><circle cx="43" cy="106" r="2" fill="#fff"/></g>
+  <path d="M70 50 C66 38 60 31 55 27" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M70 50 C74 38 80 31 85 27" stroke="#1c130e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="54.5" cy="26" r="2.4" fill="#1c130e"/><circle cx="85.5" cy="26" r="2.4" fill="#1c130e"/>
+  <ellipse cx="70" cy="74" rx="3" ry="22" fill="#1c130e"/><circle cx="70" cy="50" r="4" fill="#1c130e"/>
+</svg></div>
+</div>
 
-            // Animated gradient blobs
-            for (let i = 0; i < 3; i++) {
-                const offsetY = (time * 0.2 + i * 300) % (height + 600);
-                const gradient = ctx.createRadialGradient(
-                    width * (0.5 + Math.sin(time * 0.0008 + i) * 0.3),
-                    offsetY - scrollY * 0.2,
-                    0,
-                    width * (0.5 + Math.sin(time * 0.0008 + i) * 0.3),
-                    offsetY - scrollY * 0.2,
-                    width * 0.4
-                );
-
-                const colors = [
-                    ['rgba(59, 130, 246, 0.12)', 'rgba(59, 130, 246, 0)'],
-                    ['rgba(147, 51, 234, 0.08)', 'rgba(147, 51, 234, 0)'],
-                    ['rgba(14, 165, 233, 0.1)', 'rgba(14, 165, 233, 0)']
-                ];
-
-                gradient.addColorStop(0, colors[i][0]);
-                gradient.addColorStop(1, colors[i][1]);
-
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, width, height);
-            }
-
-            // Draw grid lines
-            ctx.strokeStyle = 'rgba(63, 63, 70, 0.3)';
-            ctx.lineWidth = 1;
-
-            // Vertical lines
-            for (let x = 0; x < width; x += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, height);
-                ctx.stroke();
-            }
-
-            // Horizontal lines
-            for (let y = 0; y < height; y += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(width, y);
-                ctx.stroke();
-            }
-
-            // Draw grid dots
-            ctx.fillStyle = 'rgba(113, 113, 122, 0.4)';
-            for (let x = 0; x < width; x += gridSize) {
-                for (let y = 0; y < height; y += gridSize) {
-                    const dist = Math.sqrt(
-                        Math.pow(x - width / 2, 2) +
-                        Math.pow(y - scrollY - height / 3, 2)
-                    );
-                    const wave = Math.sin(dist * 0.01 - time * 0.002) * 2;
-                    const radius = Math.max(0.5, 1.5 + wave);
-
-                    ctx.beginPath();
-                    ctx.arc(x, y, radius, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            // Highlight dots near center
-            const centerX = width / 2;
-            const centerY = scrollY + height / 3;
-
-            for (let x = 0; x < width; x += gridSize) {
-                for (let y = 0; y < height; y += gridSize) {
-                    const dist = Math.sqrt(
-                        Math.pow(x - centerX, 2) +
-                        Math.pow(y - centerY, 2)
-                    );
-
-                    if (dist < 200) {
-                        const intensity = 1 - (dist / 200);
-                        const glowRadius = Math.max(0.5, 2 + intensity * 2);
-                        ctx.fillStyle = `rgba(59, 130, 246, ${intensity * 0.6})`;
-                        ctx.beginPath();
-                        ctx.arc(x, y, glowRadius, 0, Math.PI * 2);
-                        ctx.fill();
-                    }
-                }
-            }
-
-            time += 1;
-            requestAnimationFrame(drawGrid);
-        }
-
-        drawGrid();
-    </script>
+<script src="script.js" defer></script>
 </body>
-
 </html>
