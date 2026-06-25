@@ -176,7 +176,28 @@ try{
     }
     requestAnimationFrame(step);
   }
-  requestAnimationFrame(step);
+
+  /* ---- on phones: no flight, just sit the butterfly on the branch ---- */
+  var isPhone=matchMedia('(max-width:640px)').matches;
+  function perchStatic(){
+    var p=getPerchPos();
+    pos.x=p.x; pos.y=p.y; landTo={x:p.x,y:p.y};
+    STATE='perched';
+    bf.classList.remove('landing'); bf.classList.add('perched');
+    bf.style.transform='translate3d('+p.x+'px,'+p.y+'px,0) rotate(0deg)';
+    if(lens) lens.style.transform='translate3d('+p.x+'px,'+p.y+'px,0)';
+    var sw=document.getElementById('bfsway'); if(sw) sw.classList.add('sway');
+    bf.style.pointerEvents='none'; /* no tap-to-restart on mobile */
+  }
+
+  if(isPhone){
+    perchStatic();
+    /* branch height settles after its image loads / on rotation — reposition then */
+    addEventListener('load', perchStatic);
+    addEventListener('resize', perchStatic);
+  } else {
+    requestAnimationFrame(step);
+  }
 
   /* ---- click perched butterfly → restart ---- */
   bf.addEventListener('click',function(){
@@ -197,6 +218,8 @@ try{
     currentPage=p;
     dots=[];
     fxLayer.style.zIndex=(p==='home')?'5':'0';
+    /* phones: butterfly just sits on the branch; re-perch when home returns (it hides behind the panel elsewhere via zIndex) */
+    if(isPhone){ if(p==='home') perchStatic(); return; }
     /* if landing/perched and navigating away, keep flying */
     if(p!=='home' && (STATE==='landing'||STATE==='perched')){
       STATE='flying'; bf.classList.remove('perched','landing'); var sw=document.getElementById('bfsway'); if(sw) sw.classList.remove('sway');
