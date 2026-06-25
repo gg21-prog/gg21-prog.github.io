@@ -110,6 +110,7 @@ a{color:inherit}
 @media(max-width:640px){
   .home{grid-template-columns:1fr}.photo-col{max-width:196px}
   .affil{white-space:normal;line-height:1.6}
+  #lens{display:none}
 }
 /* projects */
 .vhead{flex:0 0 auto;margin:0 0 16px;font-family:"Fraunces";font-weight:500;font-size:clamp(28px,5vw,42px)}

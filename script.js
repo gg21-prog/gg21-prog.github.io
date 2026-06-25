@@ -179,15 +179,24 @@ try{
 
   /* ---- on phones: no flight, just sit the butterfly on the branch ---- */
   var isPhone=matchMedia('(max-width:640px)').matches;
-  function perchStatic(){
+  /* keep the (fixed-positioned) butterfly glued to the branch as the page scrolls,
+     and hide it once the branch scrolls out of the visible scroll area */
+  function placeAtBranch(){
+    if(!branchEl) return;
     var p=getPerchPos();
     pos.x=p.x; pos.y=p.y; landTo={x:p.x,y:p.y};
-    STATE='perched';
-    bf.classList.remove('landing'); bf.classList.add('perched');
+    var sc=document.getElementById('scroll'), visible=true;
+    if(sc){var s=sc.getBoundingClientRect(); visible=(p.y>s.top+4 && p.y<s.bottom-4);}
+    bf.style.opacity=visible?'':'0';
     bf.style.transform='translate3d('+p.x+'px,'+p.y+'px,0) rotate(0deg)';
     if(lens) lens.style.transform='translate3d('+p.x+'px,'+p.y+'px,0)';
+  }
+  function perchStatic(){
+    STATE='perched';
+    bf.classList.remove('landing'); bf.classList.add('perched');
     var sw=document.getElementById('bfsway'); if(sw) sw.classList.add('sway');
     bf.style.pointerEvents='none'; /* no tap-to-restart on mobile */
+    placeAtBranch();
   }
 
   if(isPhone){
@@ -195,6 +204,8 @@ try{
     /* branch height settles after its image loads / on rotation — reposition then */
     addEventListener('load', perchStatic);
     addEventListener('resize', perchStatic);
+    var scEl=document.getElementById('scroll');
+    if(scEl) scEl.addEventListener('scroll', placeAtBranch, {passive:true});
   } else {
     requestAnimationFrame(step);
   }
