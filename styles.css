@@ -49,6 +49,9 @@ a{color:inherit}
 .navlinks a{text-decoration:none;color:var(--faint);padding-bottom:3px;border-bottom:1.5px solid transparent;cursor:pointer;transition:.18s}
 .navlinks a:hover{color:var(--ink)}
 .navlinks a.active{color:var(--ink);border-color:var(--sky)}
+.navlinks a.webring{padding:0;border-bottom:0;display:inline-flex;align-items:center}
+.navlinks a.webring img{height:30px;width:auto;display:block;opacity:.72;transition:opacity .2s}
+.navlinks a.webring:hover img{opacity:1}
 #scroll{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;position:relative}
 #scroll::-webkit-scrollbar{width:6px}
 #scroll::-webkit-scrollbar-thumb{background:rgba(58,47,40,.18);border-radius:3px}
