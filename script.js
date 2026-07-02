@@ -245,12 +245,12 @@ try{
 
 /* router */
 (function(){try{
-  var views=['home','projects','experience'];
+  var views=['home','projects','experience','now'];
   function go(r){
     if(views.indexOf(r)<0)r='home';
     views.forEach(function(v){var el=document.getElementById(v);if(el)el.hidden=(v!==r);});
     var vt=document.getElementById('viewTitle');
-    if(vt){ if(r==='home'){vt.hidden=true;} else {vt.textContent=r+'.';vt.hidden=false;} }
+    if(vt){ if(r==='home'||r==='now'){vt.hidden=true;} else {vt.textContent=r+'.';vt.hidden=false;} }
     document.querySelectorAll('.navlinks a').forEach(function(a){a.classList.toggle('active',a.dataset.route===r);});
     try{if(location.hash!=='#'+r)history.replaceState(null,'','#'+r);}catch(e){}
     var sc=document.getElementById('scroll');if(sc)sc.scrollTop=0;
@@ -296,4 +296,24 @@ try{
   sc.addEventListener('scroll',update,{passive:true});
   document.querySelectorAll('[data-route]').forEach(function(a){a.addEventListener('click',function(){setTimeout(update,60);});});
   setTimeout(update,80);
+}catch(e){}})();
+
+/* now: constellation — butterfly perches on the hovered/focused node */
+(function(){try{
+  var cn=document.getElementById('constellation'); if(!cn) return;
+  var bf=document.getElementById('cnbf');
+  var nodes=cn.querySelectorAll('.node');
+  var targets=cn.querySelectorAll('.node, .star'); /* every star is hoverable */
+  if(!bf||!targets.length) return;
+  function perch(el){
+    bf.style.left=el.dataset.x+'%';
+    bf.style.top=el.dataset.y+'%';
+    nodes.forEach(function(x){x.classList.remove('active');});
+    if(el.classList.contains('node')) el.classList.add('active');
+  }
+  targets.forEach(function(el){
+    el.addEventListener('mouseenter',function(){perch(el);});
+    el.addEventListener('focus',function(){perch(el);});
+  });
+  if(nodes.length) perch(nodes[0]); /* start settled on the first node */
 }catch(e){}})();
